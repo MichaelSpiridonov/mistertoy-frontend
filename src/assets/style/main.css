@@ -1,0 +1,18 @@
+/* Base */
+@import './base/base.css';
+@import './base/helpers.css';
+
+/* Setup */
+@import './setup/vars.css';
+
+/* Components */
+@import './cmps/AppHeader.css';
+@import './cmps/AppFooter.css';
+@import './cmps/ToyFilter.css';
+@import './cmps/UserMsg.css';
+
+
+/* Pages */
+@import './pages/ToyIndex.css';
+@import './pages/ToyEdit.css';
+@import './pages/ToyDetails.css';

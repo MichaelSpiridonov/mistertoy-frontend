@@ -1,0 +1,51 @@
+.toy-details-page {
+    flex-grow: 1;
+    padding: 100px 20px 50px;
+    text-align: center;
+}
+
+.toy-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.toy-image img {
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+.toy-details {
+    margin-top: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.toy-details h1 {
+    font-size: 2.5em;
+    color: #333;
+}
+
+.toy-details p {
+    font-size: 1.2em;
+    color: #666;
+    margin: 10px 0;
+}
+
+.toy-details .toy-description h2 {
+    font-size: 2em;
+    color: #333;
+    margin-top: 20px;
+}
+
+.toy-details .toy-description p {
+    font-size: 1.2em;
+    color: #666;
+    line-height: 1.6;
+}
