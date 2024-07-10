@@ -28,6 +28,7 @@ export function ToyEdit() {
   function handleChange({ target }) {
     let { value, type, name: field } = target
     value = type === "number" ? +value : value
+    value = type === "select-one" ? JSON.parse(value) : value
     setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
   }
 
@@ -81,8 +82,8 @@ export function ToyEdit() {
             name="toy-inStock"
             onChange={handleChange}
           >
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
           </select>
         </div>
 

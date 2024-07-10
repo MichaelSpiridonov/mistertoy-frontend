@@ -20,7 +20,11 @@ export function ToyFilter({ filterBy, onSetFilter }) {
   function handleChange({ target }) {
     let { value, name: field, type } = target
     value = type === "number" ? +value : value
-    setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+    if (filterByToEdit.sort[field] || filterByToEdit.sort[field] === '') {
+      setFilterByToEdit(prevFilter => ({ ...prevFilter, sort: {...prevFilter.sort, [field]: field === 'desc' ? -prevFilter.sort.desc : value} }))
+      }else {
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
+      }
   }
 
   function onLabelChange(selectedLabels) {
@@ -62,23 +66,32 @@ export function ToyFilter({ filterBy, onSetFilter }) {
           onChange={handleChange}
           id="inStock"
         >
-          <option value="All">All</option>
-          <option value=" ">In Stock</option>
-          <option value="">Out Of Stock</option>
+          <option value="">All</option>
+          <option value="true">In Stock</option>
+          <option value="false">Out Of Stock</option>
         </select>
 
         <label htmlFor="sort">Sort By:</label>
         <select
-          value={filterByToEdit.sort}
-          name="sort"
+          value={filterByToEdit.sort.type}
+          name="type"
           onChange={handleChange}
-          id="sort"
+          id="type"
         >
           <option value="">Sort By</option>
           <option value="name">Name</option>
           <option value="price">Price</option>
           <option value="createdAt">Created At</option>
         </select>
+
+        <label htmlFor="desc">Descending</label>
+        <input
+          type="checkbox"
+          name="desc"
+          checked={filterByToEdit.sort.desc < 0}
+          onChange={handleChange}
+          id="desc"
+        />
         <LabelSelector labels={labels} onLabelChange={onLabelChange} />
       </form>
     </section>

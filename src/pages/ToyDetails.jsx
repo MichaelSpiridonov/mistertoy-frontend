@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { utilService } from "../services/util.service";
 import { useEffect, useState } from "react"
-import { Navigate, useParams } from "react-router-dom"
+import { Navigate, useParams, Link } from "react-router-dom"
 import { toyService } from "../services/toy.service";
 
 export function ToyDetails() {
@@ -24,10 +24,12 @@ export function ToyDetails() {
     return (
         <section className="toy-details-page">
         <div className="toy-details-container">
+            
             <div className="toy-image">
-                <img src="toy.jpg" alt="Toy Image" />
+                <img src={`https://robohash.org/${toy.name}?set=set2`} alt="Toy Image" />
             </div>
             <div className="toy-details">
+            <Link className="back-button" to="/toy">Back</Link>
                 <h1 id="toy-name">{toy.name}</h1>
                 <p className="toy-price"><strong>Price:</strong>{toy.price.toLocaleString()}<span id="toy-price"></span></p>
                 <p className="toy-labels"><strong>Labels:</strong>{toy.labels}<span id="toy-labels"></span></p>

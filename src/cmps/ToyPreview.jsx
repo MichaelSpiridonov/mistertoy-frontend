@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 export function ToyPreview({ toy, onRemoveToy }) {
   return (
     <article className="toy-card">
+      <img src={`https://robohash.org/${toy.name}?set=set2`} alt="Toy 2" />
       <h2>{toy.name}</h2>
       <p>
         Price: <span>${toy.price.toLocaleString()}</span>

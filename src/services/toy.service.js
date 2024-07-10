@@ -23,29 +23,25 @@ function query(filterBy = {}) {
             if (filterBy.price) {
                 toys = toys.filter(toy => toy.price >= filterBy.price)
             }
-
-            if (filterBy.inStock !== 'All') {
-                toys = toys.filter(toy => {
-                    Boolean(filterBy.inStock).valueOf() === toy.inStock
-                })
+            if (filterBy.inStock) {
+                toys = toys.filter(toy => toy.inStock === JSON.parse(filterBy.inStock))
             }
-
             if (filterBy.labels) {
                 const labelsToFilter = filterBy.labels
                 toys = toys.filter(toy =>
                     labelsToFilter.every(label => toy.labels.includes(label))
                 )
             }
-
-            if (filterBy.sort) {
-                if (filterBy.sort === 'name') {
-                    toys = toys.sort((a, b) => a.name.localeCompare(b.name));
-                } else if (filterBy.sort === 'price') {
-                    toys = toys.sort((a, b) => a.price - b.price);
-                } else if (filterBy.sort === 'createdAt') {
-                    toys = toys.sort((a, b) => a.createdAt - b.createdAt);
-                }
-            }
+            if (filterBy.sort.type) {
+                toys.sort((toy1, toy2) => {
+                  const sortDirection = +filterBy.sort.desc
+                  if (filterBy.sort.type === 'name') {
+                    return toy1.name.localeCompare(toy2.name) * sortDirection
+                  } else if (filterBy.sort.type === 'price' || filterBy.sort.type === 'createdAt') {
+                    return (toy1[filterBy.sort.type] - toy2[filterBy.sort.type]) * sortDirection
+                  }
+                })
+              }
             return toys
         })
 }
@@ -81,9 +77,10 @@ function getEmptyToy() {
 function getDefaultFilter() {
     return {
         name: '',
-        inStock: 'All',
+        price: 0,
+        inStock: '',
         labels: [],
-        sort: {},
+        sort: {type: "", desc: 1},
     }
 }
 
