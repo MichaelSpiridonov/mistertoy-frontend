@@ -1,5 +1,11 @@
 /* eslint-disable react/prop-types */
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import TextField from '@mui/material/TextField';
 import { useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
 import { useEffectUpdate } from "../customHooks/useEffectUpdate.js"
@@ -39,60 +45,65 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     <section className="toy-filter">
       <h2>Toys Filter</h2>
       <form>
-        <label htmlFor="Name">Name:</label>
-        <input
-          type="text"
-          id="name"
+          <TextField
+          id="outlined-basic"
           name="name"
-          placeholder="By name"
-          value={filterByToEdit.name}
+          label="Name"
+          type="name"
+          labelid="name"
+          value={filterByToEdit.name || ""}
           onChange={handleChange}
+          variant="outlined"
         />
-
-        <label htmlFor="price">Price:</label>
-        <input
+        <TextField
           type="number"
           id="price"
           name="price"
-          placeholder="By price"
+          label="Price"
+          labelid="name"
           value={filterByToEdit.price || ""}
           onChange={handleChange}
+          variant="outlined"
         />
 
-        <label htmlFor="inStock">In Stock:</label>
-        <select
-          value={filterByToEdit.inStock}
-          name="inStock"
-          onChange={handleChange}
-          id="inStock"
-        >
-          <option value="">All</option>
-          <option value="true">In Stock</option>
-          <option value="false">Out Of Stock</option>
-        </select>
+        <FormControl sx={{ m: 0.5, minWidth: 120 }} size="small">
+      <InputLabel id="type">Stock</InputLabel>
+      <Select
+        labelId="inStock"
+        id="inStock"
+        name="inStock"
+        value={filterByToEdit.inStock}
+        label="Stock"
+        onChange={handleChange}
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value="true">In Stock</MenuItem>
+        <MenuItem value="false">Out Of Stock</MenuItem>
+      </Select>
+    </FormControl>
 
-        <label htmlFor="sort">Sort By:</label>
-        <select
-          value={filterByToEdit.sort.type}
-          name="type"
-          onChange={handleChange}
-          id="type"
-        >
-          <option value="">Sort By</option>
-          <option value="name">Name</option>
-          <option value="price">Price</option>
-          <option value="createdAt">Created At</option>
-        </select>
-
-        <label htmlFor="desc">Descending</label>
-        <input
-          type="checkbox"
-          name="desc"
-          checked={filterByToEdit.sort.desc < 0}
-          onChange={handleChange}
-          id="desc"
-        />
-        <LabelSelector labels={labels} onLabelChange={onLabelChange} />
+      <FormControl sx={{ m: 0.5, minWidth: 120 }} size="small">
+      <InputLabel id="type">Sort By</InputLabel>
+      <Select
+        labelId="type"
+        id="type"
+        name="type"
+        value={filterByToEdit.sort.type}
+        label="Sort By"
+        onChange={handleChange}
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value="name">Name</MenuItem>
+        <MenuItem value="price">Price</MenuItem>
+        <MenuItem value="createdAt">Created At</MenuItem>
+      </Select>
+    </FormControl>
+    <FormControlLabel name="desc" id="desc" onChange={handleChange} control={<Checkbox />} label="Descending" />
+    <LabelSelector labels={labels} onLabelChange={onLabelChange} />
       </form>
     </section>
   )

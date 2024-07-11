@@ -77,9 +77,9 @@ export function ToyEdit() {
         <div className="form-group">
           <label htmlFor="toy-inStock">In Stock:</label>
           <select
-            value={toyToEdit.inStock || ''}
-            id="toy-inStock"
-            name="toy-inStock"
+            value={toyToEdit.inStock}
+            id="inStock"
+            name="inStock"
             onChange={handleChange}
           >
             <option value="true">Yes</option>

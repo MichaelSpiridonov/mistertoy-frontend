@@ -1,0 +1,18 @@
+.main-layout {
+    @include for-narrow-layout {
+        @include layoutGTC($break-narrow);
+    }
+
+    @include for-normal-layout {
+        @include layoutGTC($break-normal);
+    }
+
+    @include for-wide-layout {
+        @include layoutGTC($break-wide);
+    }
+}
+
+
+.main-text {
+    margin-bottom: rem(90px);
+}

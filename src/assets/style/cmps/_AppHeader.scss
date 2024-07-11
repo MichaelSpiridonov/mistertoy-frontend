@@ -11,22 +11,21 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.app-nav .logo {
-    font-size: 1.2em;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
+    & .logo {
+        font-size: 1.2em;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
 
-.app-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 1.1em;
-    transition: color 0.3s;
-}
+    & a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1em;
+        transition: color 0.3s;
+    }
 
-.app-nav a:hover {
-    color: #ffd5c2;
+    & a:hover {
+        color: #ffd5c2;
+    }
 }

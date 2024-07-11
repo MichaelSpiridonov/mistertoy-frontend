@@ -1,0 +1,30 @@
+.toy-filter {
+    flex-grow: 1;
+    padding: 100px 20px 50px;
+    text-align: center;
+}
+
+.toy-filter h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.toy-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    & label {
+        font-size: 1.1em;
+        color: #333;
+        margin-right: 10px;
+    }
+}
