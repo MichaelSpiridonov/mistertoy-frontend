@@ -31,7 +31,7 @@ export function ToyDetails() {
             <div className="toy-details">
             <Link className="back-button" to="/toy">Back</Link>
                 <h1 id="toy-name">{toy.name}</h1>
-                <p className="toy-price"><strong>Price:</strong>{toy.price.toLocaleString()}<span id="toy-price"></span></p>
+                <p className="toy-price"><strong>Price:</strong>${toy.price.toLocaleString()}<span id="toy-price"></span></p>
                 <p className="toy-labels"><strong>Labels:</strong>{toy.labels}<span id="toy-labels"></span></p>
                 <p className="toy-createdAt"><strong>Created At:</strong>{new Date(toy.createdAt).toLocaleDateString()}<span id="toy-createdAt"></span></p>
                 <p className="toy-inStock"><strong>In Stock:</strong>{(toy.inStock) ? 'In stock' : 'Out of stock'}<span id="toy-inStock"></span></p>

@@ -12,8 +12,10 @@ export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
+    const user = useSelector((storeState) => storeState.userModule.loggedinUser)
 
     useEffect(() => {
+        console.log(filterBy)
         loadToys()
             .catch(err => {
                 showErrorMsg('Cannot load toys!')
@@ -54,7 +56,9 @@ export function ToyIndex() {
     return (
         <div>
             <main>
+            {user && user.isAdmin && (
                 <Link className="add-btn" to="/toy/edit">Add Toy</Link>
+            )}
                 <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
                 {!isLoading
                     ? <ToyList
