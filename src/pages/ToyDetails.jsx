@@ -1,12 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { utilService } from "../services/util.service";
-import { useEffect, useState } from "react"
-import { Navigate, useParams, Link } from "react-router-dom"
-import { toyService } from "../services/toy.service";
+import { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { toyService } from '../services/toy.service.js'
+import { showSuccessMsg } from '../services/event-bus.service.js'
+import { utilService } from '../services/util.service.js'
+
+function getEmptyMsg() {
+    return {
+      txt: '',
+    }
+  }
 
 export function ToyDetails() {
-    const [toy, setToy] = useState(null)
-    const { toyId: toyId } = useParams()
+    const [msg, setMsg] = useState(getEmptyMsg())
+  const [toy, setToy] = useState(null)
+  const { toyId } = useParams()
+  const navigate = useNavigate()
 
     useEffect(() => {
         if (toyId) loadToy()
@@ -17,9 +26,37 @@ export function ToyDetails() {
             .then(toy => setToy(toy))
             .catch(err => {
                 console.log('Had issues in toy details', err)
-                Navigate('/toy')
+                navigate('/toy')
             })
     }
+
+    function handleMsgChange(ev) {
+        const field = ev.target.name
+        const value = ev.target.value
+        setMsg((msg) => ({ ...msg, [field]: value }))
+      }
+    
+      async function onSaveMsg(ev) {
+        ev.preventDefault()
+        const savedMsg = await toyService.addMsg(toy._id, msg.txt)
+        setToy((prevToy) => ({
+          ...prevToy,
+          msgs: [...(prevToy.msgs || []), savedMsg],
+        }))
+        setMsg(getEmptyMsg())
+        showSuccessMsg('Msg saved!')
+      }
+    
+      async function onRemoveMsg(msgId) {
+        const removedMsgId = await toyService.removeMsg(toy._id, msgId)
+        setToy((prevToy) => ({
+          ...prevToy,
+          msgs: prevToy.msgs.filter((msg) => removedMsgId !== msg.id),
+        }))
+        showSuccessMsg('Msg removed!')
+      }
+
+    const { txt } = msg
     if (!toy) return <div>Loading...</div>
     return (
         <section className="toy-details-page">
@@ -40,6 +77,29 @@ export function ToyDetails() {
                     <p id="toy-description">{utilService.makeLorem(50)}</p>
                 </div>
             </div>
+            <ul>
+        {toy.msgs &&
+          toy.msgs.map((msg) => (
+            <li key={msg.id}>
+              By: {msg.by.fullname} - {msg.txt}
+              <button type="button" onClick={() => onRemoveMsg(msg.id)}>
+                X
+              </button>
+            </li>
+          ))}
+      </ul>
+      <form className="message" onSubmit={onSaveMsg}>
+        <input
+          type="text"
+          name="txt"
+          value={txt}
+          placeholder="Message"
+          onChange={handleMsgChange}
+          required
+          autoFocus
+        />
+        <button>Send</button>
+      </form>
         </div>
         </section>
     )

@@ -1,5 +1,6 @@
 .add-btn{
     padding: 10px 20px;
+    position: absolute;
     font-size: 1em;
     border: none;
     cursor: pointer;
@@ -28,64 +29,63 @@
     width: 300px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.toy-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-}
-
-.toy-card h3 {
-    font-size: 1.7em;
-    color: #333;
-    margin: 15px 0;
-}
-
-.toy-card p {
-    font-size: 1em;
-    color: #666;
-    padding: 0 15px 15px;
-}
-
-.toy-card .card-buttons {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    background-color: #f3f4f6;
-}
-
-.toy-card .btn {
-    padding: 10px 20px;
-    font-size: 1em;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.toy-card .details-btn {
-    background-color: #4caf50;
-    color: white;
-}
-
-.toy-card .edit-btn {
-    background-color: #ffc107;
-    color: white;
-}
-
-.toy-card .remove-btn {
-    background-color: #f44336;
-    color: white;
-}
-
-.toy-card a:hover, button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.toy-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    & img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    & h3 {
+        font-size: 1.7em;
+        color: #333;
+        margin: 15px 0;
+    }
+    
+    & p {
+        font-size: 1em;
+        color: #666;
+        padding: 0 15px 15px;
+    }
+    
+    & .card-buttons {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        background-color: #f3f4f6;
+    }
+    
+    & .btn {
+        padding: 10px 20px;
+        font-size: 1em;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    & .details-btn {
+        background-color: #4caf50;
+        color: white;
+    }
+    
+    & .edit-btn {
+        background-color: #ffc107;
+        color: white;
+    }
+    
+    & .remove-btn {
+        background-color: #f44336;
+        color: white;
+    }
+    
+    & a:hover, button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
 }

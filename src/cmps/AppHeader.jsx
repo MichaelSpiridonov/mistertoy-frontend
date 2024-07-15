@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
-import { LoginSignup } from "../pages/LoginSignup.jsx"
+import { LoginSignup } from "./LoginSignup.jsx"
 import { logout } from "../store/actions/user.actions.js"
 
 export function AppHeader() {
@@ -27,9 +27,11 @@ export function AppHeader() {
           <NavLink to="/about">About us</NavLink>
           <NavLink to="/toy">Toys</NavLink>
           <NavLink to="/dashboard">Dashboard</NavLink>
+          {user && ( 
+            <NavLink to="/user">User</NavLink>
+          )}
         </nav>
-      </section>
-      {user && (
+        {user && (
         <section className="user-info">
           {/* <p>
             {user.fullname} <span>${user.score.toLocaleString()}</span>
@@ -42,6 +44,7 @@ export function AppHeader() {
           <LoginSignup />
         </section>
       )}
+      </section>
     </header>
   )
 }

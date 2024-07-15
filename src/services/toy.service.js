@@ -11,7 +11,9 @@ export const toyService = {
     save,
     remove,
     getEmptyToy,
-    getDefaultFilter
+    getDefaultFilter,
+    addMsg,
+    removeMsg,
 }
 
 function query(filterBy = {}) {
@@ -32,6 +34,17 @@ function query(filterBy = {}) {
     } else {
       return httpService.post(BASE_URL, toy)
     }
+  }
+
+  async function addMsg(toyId, txt) {
+    // console.log('toyId',toyId , txt)
+    const savedMsg = await httpService.post(`toy/${toyId}/msg`, { txt })
+    return savedMsg
+  }
+  
+  async function removeMsg(toyId, msgId) {
+    const removedId = await httpService.delete(`toy/${toyId}/msg/${msgId}`)
+    return removedId
   }
 
 function getEmptyToy() {

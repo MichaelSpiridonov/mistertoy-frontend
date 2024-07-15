@@ -54,7 +54,6 @@ export function ToyIndex() {
 
 
     return (
-        <div>
             <main>
             {user && user.isAdmin && (
                 <Link className="add-btn" to="/toy/edit">Add Toy</Link>
@@ -69,7 +68,6 @@ export function ToyIndex() {
                     : <div>Loading...</div>
                 }
             </main>
-        </div>
     )
 }
 
